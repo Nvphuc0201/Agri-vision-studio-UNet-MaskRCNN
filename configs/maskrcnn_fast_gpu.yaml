@@ -1,0 +1,29 @@
+seed: 42
+device: cuda
+output_dir: outputs/maskrcnn_fast_gpu
+
+data:
+  root_dir: data
+  train_split: train
+  val_split: valid
+  test_split: test
+  img_size: 512
+  batch_size: 1
+  num_workers: 2
+  persistent_workers: true
+  prefetch_factor: 1
+
+model:
+  backbone: maskrcnn_resnet50_fpn
+  pretrained: true
+  freeze_backbone: false
+
+train:
+  epochs: 16
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  step_size: 6
+  gamma: 0.3
+  amp: true
+  cudnn_benchmark: true
+  early_stopping_patience: 4
